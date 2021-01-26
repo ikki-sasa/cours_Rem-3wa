@@ -5,7 +5,7 @@ function onClickBtn(e) {
     // e.preventDefault();
     console.log(e);
     squareElmt.classList.toggle("selected");
-    squareElmt.innerHTML = <"">;
+    // squareElmt.innerHTML = <"">;
 }
 // bonne pratique : attendre que le DOM soit chargé pour déclencher le code principal
 document.addEvenlistener("DomContentLoaded", function () {
