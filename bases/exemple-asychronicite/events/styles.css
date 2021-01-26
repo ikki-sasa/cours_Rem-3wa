@@ -1,0 +1,12 @@
+.square {
+    width: 100px;
+    height: 100px;
+}
+
+.green {
+    background-color: aqua;
+}
+
+.selected {
+    border: 5px solid red;
+}
