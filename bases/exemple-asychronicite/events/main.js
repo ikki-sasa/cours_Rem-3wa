@@ -4,13 +4,13 @@ let btnElt;
 function onClickBtn(e) {
     // e.preventDefault();
     console.log(e);
-    squareElmt.classList.toggle("selected");
-    // squareElmt.innerHTML = <"">;
+    squareElt.classList.toggle("selected");
+    squareElt.innerHTML = "<h2>hey! bro</h2>";
 }
 // bonne pratique : attendre que le DOM soit chargé pour déclencher le code principal
-document.addEvenlistener("DomContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     squareElt = document.querySelector("#square");
     btnElt = document.querySelector("#btn");
-    btn.addEvenlistener("click", onClickBtn);
+    btn.addEventListener("click", onClickBtn);
     console.log(squareElt);
 });
