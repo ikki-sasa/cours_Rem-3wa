@@ -24,7 +24,7 @@ class Parser {
         this._numbers = phrase
             .split(this._separator)
             .map((str) => str.trim())
-            .filters((str) => /^\\d+/.test(str));
+            .filter((str) => /^\\d+/.test(str));
         console.log(this._numbers);
 
 
