@@ -1,6 +1,6 @@
 <h2>Recherche d'évènements</h2>
 <!-- formulaire de recherche -->
-<form>
+<form id="searchForm">
   <div class="container">
     <div class="mb-3 row">
       <label for="q" class="col-sm-4 col-form-label">Terme de recherche</label>
@@ -8,10 +8,29 @@
         <input type="text" class="form-control" id="q">
       </div>
     </div>
+    <div class="mb-3 row">
+      <label for="date_start" class="col-sm-4 col-form-label">Année</label>
+      <div class="col-sm-8">
+        <select class="form-select" aria-label="Année" id="date_start">
+
+        </select>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="sort" class="col-sm-4 col-form-label">Ordre des résultats</label>
+      <div class="col-sm-8">
+        <select class="form-select" aria-label="Ordre" id="sort">
+          <option value="date_start">Du plus récent au plus ancien</option>
+          <option value="-date_start">Du plus ancien au plus récent</option>
+          <option value="title">Titre (ordre alphabétique)</option>
+          <option value="-title">Titre (ordre alphabétique inversé)</option>
+        </select>
+      </div>
+    </div>
   </div>
   <button class="btn btn-primary">Envoyer</button>
 </form>
 <!-- zone de résultats -->
-<div>
+<div id="eventList">
 
 </div>
