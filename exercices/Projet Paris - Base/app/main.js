@@ -1,4 +1,4 @@
-//import Router from "vanilla-router";
+import Router from "vanilla-router";
 
 import app from "./app.js";
 import config from "./config.js";
