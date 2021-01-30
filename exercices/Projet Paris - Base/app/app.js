@@ -1,8 +1,64 @@
+import firebase from "firebase/app";
+import "firebase/auth";
+
 let app = {
 	// ----------------------------------------------------------------------------------------------------------------
 	// MANIPULATION DU DOM DE L'APPLICATION
 	// ----------------------------------------------------------------------------------------------------------------
-	dom: {},
+	dom: {
+		checkLoginState: (user = null) => {
+			const links =
+				user === null
+					? [
+							{ title: "Accueil", href: "/#/" },
+							{ title: "A propos", href: "/#/about" },
+							{ title: "Connexion", href: "#/login" },
+					  ]
+					: [
+							{ title: "Accueil", href: "/#/" },
+							{ title: "Recherche", href: "/#/search" },
+							{ title: "A propos", href: "/#/about" },
+							{ title: "Déconnexion", href: "#/logout" },
+					  ];
+			document.querySelector("#main-menu ul").innerHTML = links
+				.map(
+					({ title, href }) => `
+					<li class="nav-item">
+						<a class="nav-link" href="${href}">${title}</a>
+					</li>
+				`
+				)
+				.join("");
+		},
+	},
+
+	firebase: {
+		login: () => {
+			const provider = new firebase.auth.GithubAuthProvider();
+			firebase
+				.auth()
+				.signInWithPopup(provider)
+				.then((result) => {
+					app.dom.checkLoginState(result.user);
+					app.mvc.router.navigateTo("/#/");
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		},
+		logout: () => {
+			firebase
+			.auth()
+			.signOut()
+			.then(() => {
+			// app.dom.checkLoginState();
+			app.mvc.router.navigateTo("/#/");	
+			})
+			.catch((error) => {
+					console.error(error);
+				});
+		},
+	},
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ARCHITECTURE MVC DE L'APPLICATION
@@ -26,36 +82,5 @@ let app = {
 	},
 };
 
-export const lorem = "Hello world";
-
 // L'application est exportée afin d'être accessible par d'autres modules.
 export default app;
-
-
-// let app = {
-// 	// ----------------------------------------------------------------------------------------------------------------
-// 	// MANIPULATION DU DOM DE L'APPLICATION
-// 	// ----------------------------------------------------------------------------------------------------------------
-// 	dom: {},
-
-// 	// ----------------------------------------------------------------------------------------------------------------
-// 	// ARCHITECTURE MVC DE L'APPLICATION
-// 	// ----------------------------------------------------------------------------------------------------------------
-// 	mvc: {
-//         router: null,
-//         dispatchRoute: (controllerInstnce) => {
-//             fetch(controllerInstnce.viewPath)
-//                 .then((responseHTTP) => responseHTTP.text())  
-//                 .then((htmlString) => {
-//                     document.querySelector('main').innerHTML = htmlString;
-//                     controllerInstance.controllerAfterDomUptade();
-//                 )};
-//          },       
-// 	},
-// };
-
-// export const lorem = "Hello world";
-
-// // L'application est exportée afin d'être accessible par d'autres modules.
-// export default app;
-
